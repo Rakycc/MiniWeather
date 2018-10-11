@@ -72,7 +72,7 @@
                 android:singleLine="true"
                 android:text="北京"
                 android:textColor="@android:color/white"
-                android:textSize="40.0sp"/>
+                android:textSize="40.0sp"/><!--北京-->
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                 android:singleLine="true"
                 android:text="今天18：25发布"
                 android:textColor="@android:color/white"
-                android:textSize="15.0sp"/>
+                android:textSize="15.0sp"/><!--发布日期-->
             <TextView
                 android:id="@+id/humidity"
                 android:layout_width="wrap_content"
@@ -95,13 +95,24 @@
                 android:singleLine="true"
                 android:text="湿度：57%"
                 android:textColor="@android:color/white"
+                android:textSize="15.0sp"/><!--湿度-->
+            <TextView
+                android:id="@+id/now_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/humidity"
+                android:layout_marginLeft="15.0dip"
+                android:singleLine="true"
+                android:text="温度：13°C"
+                android:textColor="@android:color/white"
                 android:textSize="15.0sp"/>
             <LinearLayout
                 android:id="@+id/pm2_5_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:alignParentTop="true"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -122,7 +133,7 @@
                             android:singleLine="true"
                             android:text="PM2.5"
                             android:textColor="@android:color/white"
-                            android:textSize="12.0sp" />
+                            android:textSize="18.0sp" />
                         <TextView
                             android:id="@+id/pm_data"
                             android:layout_width="wrap_content"
@@ -132,12 +143,13 @@
                             android:textColor="@android:color/white"
                             android:textSize="30.0sp" />
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/pm2_5_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5.0dip"
-                        android:src="@drawable/biz_plugin_weather_0_50"/>
+                        android:src="@drawable/biz_plugin_weather_0_50" />
                 </LinearLayout>
                 <TextView
                     android:id="@+id/pm2_5_quality"
@@ -147,13 +159,13 @@
                     android:singleLine="true"
                     android:text="严重污染"
                     android:textColor="@android:color/white"
-                    android:textSize="20.0sp" />
+                    android:textSize="30.0sp" />
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/humidity"
+                android:layout_below="@id/now_temperature"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5.0dip">
                 <ImageView
@@ -161,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="drawable/biz_plugin_weather_qing"/>
+                    android:src="@drawable/biz_plugin_weather_qing"/>
                 <TextView
                     android:id="@+id/week_today"
                     android:layout_width="wrap_content"
@@ -181,7 +193,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_toRightOf="@id/weather_img"
                     android:singleLine="true"
-                    android:text="-2C~7C"
+                    android:text="-2°C~7°C"
                     android:textColor="@android:color/white"
                     android:textSize="30.0sp" />
                 <TextView
