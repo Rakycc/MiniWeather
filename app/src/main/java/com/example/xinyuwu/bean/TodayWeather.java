@@ -1,7 +1,7 @@
 package com.example.xinyuwu.bean;
 
 public class TodayWeather {
-    private String city,updatetime,wendu,shidu,pm25,quality,fengxiang,fengli,date,high,low,type;
+    private String city="",updatetime="",wendu="",shidu="",pm25="",quality="",fengxiang="",fengli="",date="",high="",low="",type="";
     //private final static String you="0_50",liang="51_100",lightwuran="101_150",mediumwuran="151_200",heavywuran="200_300";
     /*private final static String baoxue="baoxue",baoyu="baoyu",dabaoyu="dabaoyu",
             daxue="daxue",dayu="dayu",duoyun="duoyun",
