@@ -14,11 +14,20 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 准备城市信息列表
+ */
+
 public class MyApplication extends Application {
     private static final String TAG="MyAPP";
     private static MyApplication mApplication;
     private CityDB mCityDB;
     private List<City> mCityList;
+
+    /**
+     * 重写onCreate方法
+     * 调用initCityList
+     */
     @Override
     public void onCreate(){
         super.onCreate();
@@ -27,6 +36,10 @@ public class MyApplication extends Application {
         mCityDB=openCityDB();
         initCityList();
     }
+
+    /**
+     * 初始化城市列表
+     */
     private void initCityList(){
         mCityList=new ArrayList<City>();
         new Thread(new Runnable() {
@@ -36,6 +49,12 @@ public class MyApplication extends Application {
             }
         }).start();
     }
+
+    /**
+     * 存储每个城市的名称和代码
+     *
+     * @return 成功存储返回true
+     */
     private boolean prepareCityList(){
         mCityList=mCityDB.getAllCity();
         int i=0;
@@ -54,6 +73,12 @@ public class MyApplication extends Application {
     public static MyApplication getInstance(){
         return mApplication;
     }
+
+    /**
+     * 构建路径
+     * 从数据库中读取所有城市信息
+     * @return 返回城市列表和存储路径
+     */
     private CityDB openCityDB(){
         String path ="/data"
                 +Environment.getDataDirectory().getAbsolutePath()
@@ -62,7 +87,7 @@ public class MyApplication extends Application {
                 +File.separator+CityDB.CITY_DB_NAME;
         File db=new File(path);
         Log.d(TAG,path);
-        if(!db.exists()){
+        if(!db.exists()){//只执行一次，从city.db中读取信息并创建db
             String pathfolder="/data"
                     +Environment.getDataDirectory().getAbsolutePath()
                     +File.separator+getPackageName()

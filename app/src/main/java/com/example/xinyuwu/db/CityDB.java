@@ -9,6 +9,10 @@ import com.example.xinyuwu.bean.City;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 构建CityDB类
+ * 逐条从数据库中读取城市信息家在列表中
+ */
 public class CityDB {
     public static final String CITY_DB_NAME="city.db";
     private static final String CITY_TABLE_NAME="city";

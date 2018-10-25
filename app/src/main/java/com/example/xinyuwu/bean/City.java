@@ -1,5 +1,10 @@
 package com.example.xinyuwu.bean;
 
+/**
+ * 创建城市类
+ * 包含所有数据库中的信息（以后更新全部使用）
+ */
+
 public class City {
     private String province;
     private String city;

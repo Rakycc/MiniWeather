@@ -1,5 +1,8 @@
 package com.example.xinyuwu.bean;
 
+/**
+ * TodayWeather类
+ */
 public class TodayWeather {
     private String city="",updatetime="",wendu="",shidu="",pm25="",quality="",fengxiang="",fengli="",date="",high="",low="",type="";
     //private final static String you="0_50",liang="51_100",lightwuran="101_150",mediumwuran="151_200",heavywuran="200_300";
@@ -105,6 +108,12 @@ public class TodayWeather {
     public void setWendu(String wendu) {
         this.wendu = wendu;
     }
+
+    /**
+     * 重写toString方法
+     * 返回天气信息
+     * @return
+     */
     @Override
     public String toString(){
         return "TodayWeather{"+
@@ -122,8 +131,16 @@ public class TodayWeather {
                 ",type='"+type+'\''+
                 '}';
     }
+
+    /**
+     *
+     * 输入pm2.5准确值，判断等级
+     * @param pm25 pm2.5准确值
+     * @return 空气污染等级
+     */
     public int getpm25Pic(String pm25){
-        int pm25number=Integer.valueOf(pm25);
+        int pm25number=0;
+        if(pm25!="")pm25number=Integer.valueOf(pm25);
         if(pm25number>=0&&pm25number<=50)return 1;
         else if(pm25number>50&&pm25number<=100)return 2;
         else if(pm25number>100&&pm25number<=150)return 3;

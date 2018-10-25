@@ -12,6 +12,9 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
+/**
+ * 实现对编辑框的处理
+ */
 public class ClearEditText extends android.support.v7.widget.AppCompatEditText implements View.OnFocusChangeListener,TextWatcher {
     private Drawable mClearDrawable;
     public ClearEditText(Context context){

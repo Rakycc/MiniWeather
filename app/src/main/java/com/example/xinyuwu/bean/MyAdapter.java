@@ -20,11 +20,22 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 构建MyAdapter类
+ */
 public class MyAdapter extends ArrayAdapter<City> {
     private int resourceId=R.layout.city_item;
     public MyAdapter(Context context,List<City> objects){
         super(context,R.layout.city_item,objects);
     }
+
+    /**
+     * 重写更新ListView的getView方法
+     * @param position 更新的城市所处位置
+     * @param convertView
+     * @param parent 上级视图的信息
+     * @return
+     */
     @Override
     public View getView(int position,View convertView,ViewGroup parent){
         City city=getItem(position);
