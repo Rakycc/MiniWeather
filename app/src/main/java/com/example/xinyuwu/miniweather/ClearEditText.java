@@ -74,7 +74,7 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
     public void afterTextChanged(Editable s){
 
     }
-    public void setShakeAnimation(){
+    /*public void setShakeAnimation(){
         this.setAnimation(shakeAnimation(5));
     }
     public static Animation shakeAnimation(int counts) {
@@ -82,5 +82,5 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
         translateAnimation.setInterpolator(new CycleInterpolator(counts));
         translateAnimation.setDuration(1000);
         return translateAnimation;
-    }
+    }*/
 }

@@ -46,7 +46,7 @@ public class SelectCity extends Activity implements View.OnClickListener {
 
     /**
      * 重写父类onCreate方法
-     * 初始化选择城市的界面（以后更新为可以根据搜索显示）
+     * 初始化选择城市的界面
      * @param savedInstance
      */
     @Override
@@ -54,14 +54,14 @@ public class SelectCity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstance);
         setContentView(R.layout.select_city);
         initViews();
-        /*mBackBtn=(ImageView)findViewById(R.id.title_back);
-        mBackBtn.setOnClickListener(this);*/
-        /*mClearEditText=(ClearEditText)findViewById(R.id.search_city);
+        mClearEditText=(ClearEditText)findViewById(R.id.search_city);
+        mList=(ListView)findViewById(R.id.title_list);
         mClearEditText.addTextChangedListener(new TextWatcher(){
             @Override
             public void onTextChanged(CharSequence s,int start,int before,int count){
                 filterData(s.toString());
                 mList.setAdapter(myadapter);
+
             }
 
             @Override
@@ -72,12 +72,25 @@ public class SelectCity extends Activity implements View.OnClickListener {
             @Override
             public void beforeTextChanged(CharSequence s,int start,int before,int count){
             }
-        });*/
+        });
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            /**
+             * 重写onItemClick方法
+             * 返回当前点击的城市信息
+             */
+            @Override
+            public void onItemClick(AdapterView<?> adapterView,View view,int position,long l){
+                //City city=filterDataList.get(position);
+                City city=filterDataList.get(position);
+                returnCityCode=city.getNumber();
+                returnCityName=city.getCity();
+                mNowCity.setText("当前城市："+returnCityName);
+            }
+        });
     }
 
-    /*private void filterData(String filterStr){//根据输入过滤数据
+    private void filterData(String filterStr){//根据输入过滤数据
         filterDataList=new ArrayList<City>();
-        Log.d(TAG,filterStr);
         if(TextUtils.isEmpty(filterStr)){
             for(City city:cityList){
                 filterDataList.add(city);
@@ -91,9 +104,8 @@ public class SelectCity extends Activity implements View.OnClickListener {
                 }
             }
         }
-        //myadapter.updateListView(filterDataList);
-        //myadapter.setNotifyOnChange(filterDataList);
-    }*/
+        myadapter=new MyAdapter(SelectCity.this,filterDataList);
+    }
 
     /**
      * 重写父类onCLick方法
@@ -140,14 +152,17 @@ public class SelectCity extends Activity implements View.OnClickListener {
         /*for(City city:cityList){
             filterDataList.add(city);
         }*/
+        for(City city:cityList){
+            filterDataList.add(city);
+        }
         myadapter=new MyAdapter(SelectCity.this,cityList);
         mList=(ListView)findViewById(R.id.title_list);
         mList.setAdapter(myadapter);
-        mList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        /*mList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             /**
              * 重写onItemClick方法
              * 返回当前点击的城市信息
-             */
+
             @Override
             public void onItemClick(AdapterView<?> adapterView,View view,int position,long l){
                 //City city=filterDataList.get(position);
@@ -156,7 +171,7 @@ public class SelectCity extends Activity implements View.OnClickListener {
                 returnCityName=city.getCity();
                 mNowCity.setText("当前城市："+returnCityName);
             }
-        });
+        });*/
 
     }
 }

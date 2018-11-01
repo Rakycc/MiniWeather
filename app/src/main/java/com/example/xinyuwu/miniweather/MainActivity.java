@@ -1,5 +1,6 @@
 package com.example.xinyuwu.miniweather;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +9,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +40,8 @@ import okhttp3.Response;
 
 public class MainActivity extends Activity implements View.OnClickListener{
     private static final int UPDATE_TODAY_WEATHER=1;
-    private ImageView mUpdateBtn,mCitySelect;
+    private ImageView mUpdateBtn,mCitySelect,mShare;
+    private ProgressBar mUpdateBtn_Progress;
     private TextView cityTv,timeTv,humidityTv,weekTv,pmDataTv,pmQualityTv,temperatureTv,climateTv,windTv,city_name_Tv,now_temperature_Tv;
     private ImageView weatherImg,pmImg;
     private Handler mHandler=new Handler(){
@@ -50,6 +55,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
             switch(msg.what){
                 case UPDATE_TODAY_WEATHER:
                     if(((TodayWeather) msg.obj).getCity()!="") {
+                        mUpdateBtn_Progress.setVisibility(View.GONE);
+                        mUpdateBtn.setVisibility(View.VISIBLE);
+                        RelativeLayout.LayoutParams params=(RelativeLayout.LayoutParams)mShare.getLayoutParams();
+                        params.addRule(RelativeLayout.LEFT_OF, R.id.title_update_btn);//先读取相对布局，更新相对布局
                         updateTodayWeather((TodayWeather) msg.obj);
                     }
                     break;
@@ -73,6 +82,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         mUpdateBtn = (ImageView) findViewById(R.id.title_update_btn);
         mUpdateBtn.setOnClickListener(this);
+        mUpdateBtn_Progress=(ProgressBar)findViewById(R.id.title_update_progress);
+        mShare=(ImageView)findViewById(R.id.title_share);
         mCitySelect=(ImageView)findViewById(R.id.title_city_manager);
         mCitySelect.setOnClickListener(this);
         if (NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE) {
@@ -137,6 +148,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Log.d("myWeather",cityCode);
                 if(NetUtil.getNetworkState(this)!=NetUtil.NETWORN_NONE){
                     Log.d ("myWeather","网络正常");
+                    mUpdateBtn.setVisibility(View.GONE);
+                    mUpdateBtn_Progress.setVisibility(View.VISIBLE);
+                    RelativeLayout.LayoutParams params=(RelativeLayout.LayoutParams)mShare.getLayoutParams();
+                    params.addRule(RelativeLayout.LEFT_OF, R.id.title_update_progress);//先读取相对布局，更新相对布局
                     queryWeatherCode(cityCode);
                 }else{
                     Log.d("myWeather","请检查网络");
